@@ -1,23 +1,23 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { WebpageJsonLd } from 'lib/json-ld';
-import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
+import { WebpageJsonLd } from "lib/json-ld";
+import { helmetSettingsFromMetadata } from "lib/site";
+import useSite from "hooks/use-site";
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import SectionTitle from 'components/SectionTitle';
-import PostCard from 'components/PostCard';
-import Pagination from 'components/Pagination/Pagination';
+import Layout from "components/Layout";
+import Header from "components/Header";
+import Section from "components/Section";
+import Container from "components/Container";
+import SectionTitle from "components/SectionTitle";
+import PostCard from "components/PostCard";
+import Pagination from "components/Pagination/Pagination";
 
-import styles from 'styles/templates/Archive.module.scss';
+import styles from "styles/templates/Archive.module.scss";
 
 const DEFAULT_POST_OPTIONS = {};
 
 export default function TemplateArchive({
-  title = 'Archive',
+  title = "Archive",
   Title,
   posts,
   postOptions = DEFAULT_POST_OPTIONS,
@@ -39,7 +39,12 @@ export default function TemplateArchive({
     <Layout>
       <Helmet {...helmetSettings} />
 
-      <WebpageJsonLd title={title} description={metadata.description} siteTitle={siteMetadata.title} slug={slug} />
+      <WebpageJsonLd
+        title={title}
+        description={metadata.description}
+        siteTitle={siteMetadata.title}
+        slug={slug}
+      />
 
       <Header>
         <Container>

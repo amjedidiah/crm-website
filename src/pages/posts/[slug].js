@@ -1,23 +1,28 @@
-import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Link from "next/link";
+import { Helmet } from "react-helmet";
 
-import { getPostBySlug, getRecentPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
-import { categoryPathBySlug } from 'lib/categories';
-import { formatDate } from 'lib/datetime';
-import { ArticleJsonLd } from 'lib/json-ld';
-import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
-import usePageMetadata from 'hooks/use-page-metadata';
+import {
+  getPostBySlug,
+  getRecentPosts,
+  getRelatedPosts,
+  postPathBySlug,
+} from "lib/posts";
+import { categoryPathBySlug } from "lib/categories";
+import { formatDate } from "lib/datetime";
+import { ArticleJsonLd } from "lib/json-ld";
+import { helmetSettingsFromMetadata } from "lib/site";
+import useSite from "hooks/use-site";
+import usePageMetadata from "hooks/use-page-metadata";
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import Content from 'components/Content';
-import Metadata from 'components/Metadata';
-import FeaturedImage from 'components/FeaturedImage';
+import Layout from "components/Layout";
+import Header from "components/Header";
+import Section from "components/Section";
+import Container from "components/Container";
+import Content from "components/Content";
+import Metadata from "components/Metadata";
+import FeaturedImage from "components/FeaturedImage";
 
-import styles from 'styles/pages/Post.module.scss';
+import styles from "styles/pages/Post.module.scss";
 
 export default function Post({ post, socialImage, related }) {
   const {
@@ -48,7 +53,8 @@ export default function Post({ post, socialImage, related }) {
     metadata: {
       ...post,
       title: metaTitle,
-      description: description || post.og?.description || `Read more about ${title}`,
+      description:
+        description || post.og?.description || `Read more about ${title}`,
     },
   });
 
@@ -111,12 +117,17 @@ export default function Post({ post, socialImage, related }) {
 
       <Section className={styles.postFooter}>
         <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+          <p className={styles.postModified}>
+            Last updated on {formatDate(modified)}.
+          </p>
           {Array.isArray(relatedPostsList) && relatedPostsList.length > 0 && (
             <div className={styles.relatedPosts}>
               {relatedPostsTitle.name ? (
                 <span>
-                  More from <Link href={relatedPostsTitle.link}>{relatedPostsTitle.name}</Link>
+                  More from{" "}
+                  <Link href={relatedPostsTitle.link}>
+                    {relatedPostsTitle.name}
+                  </Link>
                 </span>
               ) : (
                 <span>More Posts</span>
@@ -153,8 +164,10 @@ export async function getStaticProps({ params = {} } = {}) {
     socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
   };
 
-  const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
-  const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
+  const { category: relatedCategory, posts: relatedPosts } =
+    (await getRelatedPosts(categories, postId)) || {};
+  const hasRelated =
+    relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;
 
   if (hasRelated) {
     props.related = {
@@ -180,11 +193,11 @@ export async function getStaticPaths() {
 
   const { posts } = await getRecentPosts({
     count: process.env.POSTS_PRERENDER_COUNT, // Update this value in next.config.js!
-    queryIncludes: 'index',
+    queryIncludes: "index",
   });
 
   const paths = posts
-    .filter(({ slug }) => typeof slug === 'string')
+    .filter(({ slug }) => typeof slug === "string")
     .map(({ slug }) => ({
       params: {
         slug,
@@ -193,6 +206,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }

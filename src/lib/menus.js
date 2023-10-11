@@ -1,8 +1,8 @@
-import { getApolloClient } from 'lib/apollo-client';
-import { getTopLevelPages } from 'lib/pages';
-import { QUERY_ALL_MENUS } from 'data/menus';
+import { getApolloClient } from "lib/apollo-client";
+import { getTopLevelPages } from "lib/pages";
+import { QUERY_ALL_MENUS } from "data/menus";
 
-export const MENU_LOCATION_NAVIGATION_DEFAULT = 'DEFAULT_NAVIGATION';
+export const MENU_LOCATION_NAVIGATION_DEFAULT = "DEFAULT_NAVIGATION";
 
 /**
  * getAllMenus
@@ -20,7 +20,7 @@ export async function getAllMenus() {
   const defaultNavigation = createMenuFromPages({
     locations: [MENU_LOCATION_NAVIGATION_DEFAULT],
     pages: await getTopLevelPages({
-      queryIncludes: 'index',
+      queryIncludes: "index",
     }),
   });
 
@@ -76,7 +76,7 @@ export function createMenuFromPages({ locations, pages }) {
  */
 export const parseHierarchicalMenu = (
   data = [],
-  { idKey = 'id', parentKey = 'parentId', childrenKey = 'children' } = {}
+  { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
 ) => {
   const tree = [];
   const childrenOf = {};
@@ -86,7 +86,9 @@ export const parseHierarchicalMenu = (
     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
     childrenOf[id] = childrenOf[id] || [];
     newItem[childrenKey] = childrenOf[id];
-    parentId ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem) : tree.push(newItem);
+    parentId
+      ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+      : tree.push(newItem);
   });
   return tree;
 };
@@ -96,12 +98,16 @@ export const parseHierarchicalMenu = (
  */
 
 export function findMenuByLocation(menus, location) {
-  if (typeof location !== 'string') {
-    throw new Error('Failed to find menu by location - location is not a string.');
+  if (typeof location !== "string") {
+    throw new Error(
+      "Failed to find menu by location - location is not a string."
+    );
   }
 
   const menu = menus.find(({ locations }) => {
-    return locations.map((loc) => loc.toUpperCase()).includes(location.toUpperCase());
+    return locations
+      .map((loc) => loc.toUpperCase())
+      .includes(location.toUpperCase());
   });
 
   return menu && parseHierarchicalMenu(menu.menuItems);

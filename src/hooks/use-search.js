@@ -1,14 +1,14 @@
-import { useState, createContext, useContext, useEffect } from 'react';
-import Fuse from 'fuse.js';
+import { useState, createContext, useContext, useEffect } from "react";
+import Fuse from "fuse.js";
 
-import { getSearchData } from 'lib/search';
+import { getSearchData } from "lib/search";
 
-const SEARCH_KEYS = ['slug', 'title'];
+const SEARCH_KEYS = ["slug", "title"];
 
-export const SEARCH_STATE_LOADING = 'LOADING';
-export const SEARCH_STATE_READY = 'READY';
-export const SEARCH_STATE_ERROR = 'ERROR';
-export const SEARCH_STATE_LOADED = 'LOADED';
+export const SEARCH_STATE_LOADING = "LOADING";
+export const SEARCH_STATE_READY = "READY";
+export const SEARCH_STATE_ERROR = "ERROR";
+export const SEARCH_STATE_LOADED = "LOADED";
 
 export const SearchContext = createContext();
 

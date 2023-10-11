@@ -1,14 +1,23 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 
-import { authorPathByName } from 'lib/users';
-import { postPathBySlug } from 'lib/posts';
-import { pagePathBySlug } from 'lib/pages';
+import { authorPathByName } from "lib/users";
+import { postPathBySlug } from "lib/posts";
+import { pagePathBySlug } from "lib/pages";
 
-import config from '../../package.json';
+import config from "../../package.json";
 
-export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
-  const { homepage = '', faviconPath = '/favicon.ico' } = config;
-  const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
+export function ArticleJsonLd({ post = {}, siteTitle = "" }) {
+  const { homepage = "", faviconPath = "/favicon.ico" } = config;
+  const {
+    title,
+    slug,
+    excerpt,
+    date,
+    author,
+    categories,
+    modified,
+    featuredImage,
+  } = post;
   const path = postPathBySlug(slug);
   const datePublished = !!date && new Date(date);
   const dateModified = !!modified && new Date(modified);
@@ -19,28 +28,30 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
    * */
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    "@context": "https://schema.org",
+    "@type": "Article",
     mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${homepage}${path}`,
+      "@type": "WebPage",
+      "@id": `${homepage}${path}`,
     },
     headline: title,
     image: [featuredImage?.sourceUrl],
-    datePublished: datePublished ? datePublished.toISOString() : '',
-    dateModified: dateModified ? dateModified.toISOString() : datePublished.toISOString(),
+    datePublished: datePublished ? datePublished.toISOString() : "",
+    dateModified: dateModified
+      ? dateModified.toISOString()
+      : datePublished.toISOString(),
     description: excerpt,
-    keywords: [categories.map(({ name }) => `${name}`).join(', ')],
-    copyrightYear: datePublished ? datePublished.getFullYear() : '',
+    keywords: [categories.map(({ name }) => `${name}`).join(", ")],
+    copyrightYear: datePublished ? datePublished.getFullYear() : "",
     author: {
-      '@type': 'Person',
+      "@type": "Person",
       name: author?.name,
     },
     publisher: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: siteTitle,
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${homepage}${faviconPath}`,
       },
     },
@@ -53,19 +64,19 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   );
 }
 
-export function WebsiteJsonLd({ siteTitle = '' }) {
-  const { homepage = '' } = config;
+export function WebsiteJsonLd({ siteTitle = "" }) {
+  const { homepage = "" } = config;
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     name: siteTitle,
     url: homepage,
     copyrightYear: new Date().getFullYear(),
     potentialAction: {
-      '@type': 'SearchAction',
+      "@type": "SearchAction",
       target: `${homepage}/search/?q={search_term_string}`,
-      'query-input': 'required name=search_term_string',
+      "query-input": "required name=search_term_string",
     },
   };
 
@@ -76,18 +87,23 @@ export function WebsiteJsonLd({ siteTitle = '' }) {
   );
 }
 
-export function WebpageJsonLd({ title = '', description = '', siteTitle = '', slug = '' }) {
-  const { homepage = '' } = config;
+export function WebpageJsonLd({
+  title = "",
+  description = "",
+  siteTitle = "",
+  slug = "",
+}) {
+  const { homepage = "" } = config;
   const path = pagePathBySlug(slug);
 
   const jsonLd = {
-    '@context': 'http://schema.org',
-    '@type': 'WebPage',
+    "@context": "http://schema.org",
+    "@type": "WebPage",
     name: title,
     description: description,
     url: `${homepage}${path}`,
     publisher: {
-      '@type': 'ProfilePage',
+      "@type": "ProfilePage",
       name: siteTitle,
     },
   };
@@ -100,13 +116,13 @@ export function WebpageJsonLd({ title = '', description = '', siteTitle = '', sl
 }
 
 export function AuthorJsonLd({ author = {} }) {
-  const { homepage = '' } = config;
+  const { homepage = "" } = config;
   const { name, avatar, description } = author;
   const path = authorPathByName(name);
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
+    "@context": "https://schema.org",
+    "@type": "Person",
     name: name,
     image: avatar?.url,
     url: `${homepage}${path}`,
@@ -121,11 +137,11 @@ export function AuthorJsonLd({ author = {} }) {
 }
 
 export function LogoJsonLd() {
-  const { homepage = '', faviconPath = '/favicon.ico' } = config;
+  const { homepage = "", faviconPath = "/favicon.ico" } = config;
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     url: `${homepage}`,
     logo: `${homepage}${faviconPath}`,
   };

@@ -1,24 +1,32 @@
-import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Link from "next/link";
+import { Helmet } from "react-helmet";
 
-import { getPageByUri, getAllPages, getBreadcrumbsByUri } from 'lib/pages';
-import { WebpageJsonLd } from 'lib/json-ld';
-import { helmetSettingsFromMetadata } from 'lib/site';
-import useSite from 'hooks/use-site';
-import usePageMetadata from 'hooks/use-page-metadata';
+import { getPageByUri, getAllPages, getBreadcrumbsByUri } from "lib/pages";
+import { WebpageJsonLd } from "lib/json-ld";
+import { helmetSettingsFromMetadata } from "lib/site";
+import useSite from "hooks/use-site";
+import usePageMetadata from "hooks/use-page-metadata";
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Content from 'components/Content';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import FeaturedImage from 'components/FeaturedImage';
-import Breadcrumbs from 'components/Breadcrumbs';
+import Layout from "components/Layout";
+import Header from "components/Header";
+import Content from "components/Content";
+import Section from "components/Section";
+import Container from "components/Container";
+import FeaturedImage from "components/FeaturedImage";
+import Breadcrumbs from "components/Breadcrumbs";
 
-import styles from 'styles/pages/Page.module.scss';
+import styles from "styles/pages/Page.module.scss";
 
 export default function Page({ page, breadcrumbs }) {
-  const { title, metaTitle, description, slug, content, featuredImage, children } = page;
+  const {
+    title,
+    metaTitle,
+    description,
+    slug,
+    content,
+    featuredImage,
+    children,
+  } = page;
 
   const { metadata: siteMetadata = {} } = useSite();
 
@@ -26,7 +34,8 @@ export default function Page({ page, breadcrumbs }) {
     metadata: {
       ...page,
       title: metaTitle,
-      description: description || page.og?.description || `Read more about ${title}`,
+      description:
+        description || page.og?.description || `Read more about ${title}`,
     },
   });
 
@@ -113,7 +122,7 @@ export async function getStaticProps({ params = {} } = {}) {
   // existing children
 
   if (Array.isArray(slugChild) && slugChild.length > 0) {
-    pageUri = `${pageUri}${slugChild.join('/')}/`;
+    pageUri = `${pageUri}${slugChild.join("/")}/`;
   }
 
   const { page } = await getPageByUri(pageUri);
@@ -131,7 +140,7 @@ export async function getStaticProps({ params = {} } = {}) {
   // our trail
 
   const { pages } = await getAllPages({
-    queryIncludes: 'index',
+    queryIncludes: "index",
   });
 
   const breadcrumbs = getBreadcrumbsByUri(pageUri, pages);
@@ -146,7 +155,7 @@ export async function getStaticProps({ params = {} } = {}) {
 
 export async function getStaticPaths() {
   const { pages } = await getAllPages({
-    queryIncludes: 'index',
+    queryIncludes: "index",
   });
 
   // Take all the pages and create path params. The slugParent will always be
@@ -157,9 +166,9 @@ export async function getStaticPaths() {
   // as they have the same path, which will fail the build
 
   const paths = pages
-    .filter(({ uri }) => typeof uri === 'string' && uri !== '/')
+    .filter(({ uri }) => typeof uri === "string" && uri !== "/")
     .map(({ uri }) => {
-      const segments = uri.split('/').filter((seg) => seg !== '');
+      const segments = uri.split("/").filter((seg) => seg !== "");
 
       return {
         params: {
@@ -171,6 +180,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }

@@ -1,23 +1,23 @@
-import Link from 'next/link';
-import { Helmet } from 'react-helmet';
+import Link from "next/link";
+import { Helmet } from "react-helmet";
 
-import useSite from 'hooks/use-site';
-import { getAllCategories, categoryPathBySlug } from 'lib/categories';
-import { WebpageJsonLd } from 'lib/json-ld';
+import useSite from "hooks/use-site";
+import { getAllCategories, categoryPathBySlug } from "lib/categories";
+import { WebpageJsonLd } from "lib/json-ld";
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import Section from 'components/Section';
-import Container from 'components/Container';
-import SectionTitle from 'components/SectionTitle';
+import Layout from "components/Layout";
+import Header from "components/Header";
+import Section from "components/Section";
+import Container from "components/Container";
+import SectionTitle from "components/SectionTitle";
 
-import styles from 'styles/pages/Categories.module.scss';
+import styles from "styles/pages/Categories.module.scss";
 
 export default function Categories({ categories }) {
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
-  const title = 'Categories';
-  const slug = 'categories';
+  const title = "Categories";
+  const slug = "categories";
   let metaDescription = `Read ${categories.length} categories at ${siteTitle}.`;
 
   return (
@@ -29,7 +29,12 @@ export default function Categories({ categories }) {
         <meta property="og:description" content={metaDescription} />
       </Helmet>
 
-      <WebpageJsonLd title={title} description={metaDescription} siteTitle={siteTitle} slug={slug} />
+      <WebpageJsonLd
+        title={title}
+        description={metaDescription}
+        siteTitle={siteTitle}
+        slug={slug}
+      />
 
       <Header>
         <Container>
@@ -44,7 +49,9 @@ export default function Categories({ categories }) {
             {categories.map((category) => {
               return (
                 <li key={category.slug}>
-                  <Link href={categoryPathBySlug(category.slug)}>{category.name}</Link>
+                  <Link href={categoryPathBySlug(category.slug)}>
+                    {category.name}
+                  </Link>
                 </li>
               );
             })}

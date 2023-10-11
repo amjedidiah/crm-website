@@ -1,12 +1,12 @@
-import ClassName from 'models/classname';
+import ClassName from "models/classname";
 
-import styles from './Image.module.scss';
+import styles from "./Image.module.scss";
 
 const Image = ({
   children,
   className,
-  width = '100%',
-  height = 'auto',
+  width = "100%",
+  height = "auto",
   src,
   alt,
   srcSet,
@@ -20,7 +20,14 @@ const Image = ({
   return (
     <figure className={imageClassName.toString()}>
       <div className={styles.featuredImageImg}>
-        <img width={width} height={height} src={src} alt={alt || ''} srcSet={srcSet} sizes={sizes} />
+        <img
+          width={width}
+          height={height}
+          src={src}
+          alt={alt || ""}
+          srcSet={srcSet}
+          sizes={sizes}
+        />
       </div>
       {children && <figcaption>{children}</figcaption>}
       {dangerouslySetInnerHTML && (

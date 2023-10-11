@@ -23,7 +23,7 @@ class ClassName {
   }
 
   toString() {
-    return this.base.join(' ');
+    return this.base.join(" ");
   }
 }
 

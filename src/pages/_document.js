@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-document-import-in-page */
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { Helmet } from 'react-helmet';
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { Helmet } from "react-helmet";
 
 // Via https://github.com/vercel/next.js/blob/canary/examples/with-react-helmet/pages/_document.js
 
@@ -25,7 +25,7 @@ export default class MyDocument extends Document {
   // should render on <head>
   get helmetHeadComponents() {
     return Object.keys(this.props.helmet)
-      .filter((el) => el !== 'htmlAttributes' && el !== 'bodyAttributes')
+      .filter((el) => el !== "htmlAttributes" && el !== "bodyAttributes")
       .map((el) => this.props.helmet[el].toComponent());
   }
 

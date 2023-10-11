@@ -1,10 +1,10 @@
-import { getUserByNameSlug } from 'lib/users';
-import { getPostsByAuthorSlug } from 'lib/posts';
-import { AuthorJsonLd } from 'lib/json-ld';
-import usePageMetadata from 'hooks/use-page-metadata';
+import { getUserByNameSlug } from "lib/users";
+import { getPostsByAuthorSlug } from "lib/posts";
+import { AuthorJsonLd } from "lib/json-ld";
+import usePageMetadata from "hooks/use-page-metadata";
 
-import TemplateArchive from 'templates/archive';
-import Title from 'components/Title';
+import TemplateArchive from "templates/archive";
+import Title from "components/Title";
 
 export default function Author({ user, posts }) {
   const { title, name, avatar, description, slug } = user;
@@ -13,12 +13,15 @@ export default function Author({ user, posts }) {
     metadata: {
       ...user,
       title,
-      description: description || user.og?.description || `Read ${posts.length} posts from ${name}`,
+      description:
+        description ||
+        user.og?.description ||
+        `Read ${posts.length} posts from ${name}`,
     },
   });
 
   const postOptions = {
-    excludeMetadata: ['author'],
+    excludeMetadata: ["author"],
   };
 
   return (
@@ -48,7 +51,7 @@ export async function getStaticProps({ params = {} } = {}) {
 
   const { posts } = await getPostsByAuthorSlug({
     slug: user?.slug,
-    queryIncludes: 'archive',
+    queryIncludes: "archive",
   });
 
   return {
@@ -86,6 +89,6 @@ export async function getStaticPaths() {
 
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }

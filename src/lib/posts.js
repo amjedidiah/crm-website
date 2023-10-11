@@ -1,7 +1,7 @@
-import { getApolloClient } from 'lib/apollo-client';
+import { getApolloClient } from "lib/apollo-client";
 
-import { updateUserAvatar } from 'lib/users';
-import { sortObjectsByDate } from 'lib/datetime';
+import { updateUserAvatar } from "lib/users";
+import { sortObjectsByDate } from "lib/datetime";
 
 import {
   QUERY_ALL_POSTS_INDEX,
@@ -16,7 +16,7 @@ import {
   QUERY_POSTS_BY_CATEGORY_ID,
   QUERY_POST_SEO_BY_SLUG,
   QUERY_POST_PER_PAGE,
-} from 'data/posts';
+} from "data/posts";
 
 /**
  * postPathBySlug
@@ -45,7 +45,9 @@ export async function getPostBySlug(slug) {
       },
     });
   } catch (e) {
-    console.log(`[posts][getPostBySlug] Failed to query post data: ${e.message}`);
+    console.log(
+      `[posts][getPostBySlug] Failed to query post data: ${e.message}`
+    );
     throw e;
   }
 
@@ -65,8 +67,12 @@ export async function getPostBySlug(slug) {
         },
       });
     } catch (e) {
-      console.log(`[posts][getPostBySlug] Failed to query SEO plugin: ${e.message}`);
-      console.log('Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js.');
+      console.log(
+        `[posts][getPostBySlug] Failed to query SEO plugin: ${e.message}`
+      );
+      console.log(
+        "Is the SEO Plugin installed? If not, disable WORDPRESS_PLUGIN_SEO in next.config.js."
+      );
       throw e;
     }
 
@@ -131,7 +137,7 @@ const allPostsIncludesTypes = {
 };
 
 export async function getAllPosts(options = {}) {
-  const { queryIncludes = 'index' } = options;
+  const { queryIncludes = "index" } = options;
 
   const apolloClient = getApolloClient();
 
@@ -157,7 +163,7 @@ const postsByAuthorSlugIncludesTypes = {
 };
 
 export async function getPostsByAuthorSlug({ slug, ...options }) {
-  const { queryIncludes = 'index' } = options;
+  const { queryIncludes = "index" } = options;
 
   const apolloClient = getApolloClient();
 
@@ -171,7 +177,9 @@ export async function getPostsByAuthorSlug({ slug, ...options }) {
       },
     });
   } catch (e) {
-    console.log(`[posts][getPostsByAuthorSlug] Failed to query post data: ${e.message}`);
+    console.log(
+      `[posts][getPostsByAuthorSlug] Failed to query post data: ${e.message}`
+    );
     throw e;
   }
 
@@ -193,7 +201,7 @@ const postsByCategoryIdIncludesTypes = {
 };
 
 export async function getPostsByCategoryId({ categoryId, ...options }) {
-  const { queryIncludes = 'index' } = options;
+  const { queryIncludes = "index" } = options;
 
   const apolloClient = getApolloClient();
 
@@ -207,7 +215,9 @@ export async function getPostsByCategoryId({ categoryId, ...options }) {
       },
     });
   } catch (e) {
-    console.log(`[posts][getPostsByCategoryId] Failed to query post data: ${e.message}`);
+    console.log(
+      `[posts][getPostsByCategoryId] Failed to query post data: ${e.message}`
+    );
     throw e;
   }
 
@@ -235,25 +245,27 @@ export async function getRecentPosts({ count, ...options }) {
  */
 
 export function sanitizeExcerpt(excerpt) {
-  if (typeof excerpt !== 'string') {
-    throw new Error(`Failed to sanitize excerpt: invalid type ${typeof excerpt}`);
+  if (typeof excerpt !== "string") {
+    throw new Error(
+      `Failed to sanitize excerpt: invalid type ${typeof excerpt}`
+    );
   }
 
   let sanitized = excerpt;
 
   // If the theme includes [...] as the more indication, clean it up to just ...
 
-  sanitized = sanitized.replace(/\s?\[&hellip;\]/, '&hellip;');
+  sanitized = sanitized.replace(/\s?\[&hellip;\]/, "&hellip;");
 
   // If after the above replacement, the ellipsis includes 4 dots, it's
   // the end of a setence
 
-  sanitized = sanitized.replace('....', '.');
-  sanitized = sanitized.replace('.&hellip;', '.');
+  sanitized = sanitized.replace("....", ".");
+  sanitized = sanitized.replace(".&hellip;", ".");
 
   // If the theme is including a "Continue..." link, remove it
 
-  sanitized = sanitized.replace(/\w*<a class="more-link".*<\/a>/, '');
+  sanitized = sanitized.replace(/\w*<a class="more-link".*<\/a>/, "");
 
   return sanitized;
 }
@@ -316,13 +328,16 @@ export async function getRelatedPosts(categories, postId, count = 5) {
   if (related.category) {
     const { posts } = await getPostsByCategoryId({
       categoryId: related.category.databaseId,
-      queryIncludes: 'archive',
+      queryIncludes: "archive",
     });
 
     const filtered = posts.filter(({ postId: id }) => id !== postId);
     const sorted = sortObjectsByDate(filtered);
 
-    related.posts = sorted.map((post) => ({ title: post.title, slug: post.slug }));
+    related.posts = sorted.map((post) => ({
+      title: post.title,
+      slug: post.slug,
+    }));
   }
 
   if (!Array.isArray(related.posts) || related.posts.length === 0) {
@@ -392,7 +407,7 @@ export async function getPaginatedPosts({ currentPage = 1, ...options } = {}) {
 
   let page = Number(currentPage);
 
-  if (typeof page === 'undefined' || isNaN(page)) {
+  if (typeof page === "undefined" || isNaN(page)) {
     page = 1;
   } else if (page > pagesCount) {
     return {

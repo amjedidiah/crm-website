@@ -1,20 +1,20 @@
-import { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
-import usePageMetadata from 'hooks/use-page-metadata';
+import { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import usePageMetadata from "hooks/use-page-metadata";
 
-import useSearch from 'hooks/use-search';
+import useSearch from "hooks/use-search";
 
-import TemplateArchive from 'templates/archive';
+import TemplateArchive from "templates/archive";
 
 export default function Search() {
   const { query, results, search } = useSearch();
-  const title = 'Search';
-  const slug = 'search';
+  const title = "Search";
+  const slug = "search";
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     search({
-      query: params.get('q'),
+      query: params.get("q"),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -31,7 +31,12 @@ export default function Search() {
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <TemplateArchive title={title} posts={results} slug={slug} metadata={metadata} />
+      <TemplateArchive
+        title={title}
+        posts={results}
+        slug={slug}
+        metadata={metadata}
+      />
     </>
   );
 }

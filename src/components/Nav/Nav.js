@@ -1,19 +1,22 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
-import Link from 'next/link';
-import { FaSearch } from 'react-icons/fa';
+import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
+import { FaSearch } from "react-icons/fa";
 
-import useSite from 'hooks/use-site';
-import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
-import { postPathBySlug } from 'lib/posts';
-import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
+import useSite from "hooks/use-site";
+import useSearch, { SEARCH_STATE_LOADED } from "hooks/use-search";
+import { postPathBySlug } from "lib/posts";
+import {
+  findMenuByLocation,
+  MENU_LOCATION_NAVIGATION_DEFAULT,
+} from "lib/menus";
 
-import Section from 'components/Section';
+import Section from "components/Section";
 
-import styles from './Nav.module.scss';
-import NavListItem from 'components/NavListItem';
+import styles from "./Nav.module.scss";
+import NavListItem from "components/NavListItem";
 
-const SEARCH_VISIBLE = 'visible';
-const SEARCH_HIDDEN = 'hidden';
+const SEARCH_VISIBLE = "visible";
+const SEARCH_HIDDEN = "hidden";
 
 const Nav = () => {
   const formRef = useRef();
@@ -23,7 +26,9 @@ const Nav = () => {
   const { metadata = {}, menus } = useSite();
   const { title } = metadata;
 
-  const navigationLocation = process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
+  const navigationLocation =
+    process.env.WORDPRESS_MENU_LOCATION_NAVIGATION ||
+    MENU_LOCATION_NAVIGATION_DEFAULT;
   const navigation = findMenuByLocation(menus, navigationLocation);
 
   const { query, results, search, clearSearch, state } = useSearch({
@@ -51,7 +56,9 @@ const Nav = () => {
     // When the search box opens up, additionall find the search input and focus
     // on the element so someone can start typing right away
 
-    const searchInput = Array.from(formRef.current.elements).find((input) => input.type === 'search');
+    const searchInput = Array.from(formRef.current.elements).find(
+      (input) => input.type === "search"
+    );
 
     searchInput.focus();
 
@@ -67,7 +74,7 @@ const Nav = () => {
    */
 
   function addDocumentOnClick() {
-    document.body.addEventListener('click', handleOnDocumentClick, true);
+    document.body.addEventListener("click", handleOnDocumentClick, true);
   }
 
   /**
@@ -75,7 +82,7 @@ const Nav = () => {
    */
 
   function removeDocumentOnClick() {
-    document.body.removeEventListener('click', handleOnDocumentClick, true);
+    document.body.removeEventListener("click", handleOnDocumentClick, true);
   }
 
   /**
@@ -112,7 +119,7 @@ const Nav = () => {
    */
 
   function addResultsRoving() {
-    document.body.addEventListener('keydown', handleResultsRoving);
+    document.body.addEventListener("keydown", handleResultsRoving);
   }
 
   /**
@@ -120,7 +127,7 @@ const Nav = () => {
    */
 
   function removeResultsRoving() {
-    document.body.removeEventListener('keydown', handleResultsRoving);
+    document.body.removeEventListener("keydown", handleResultsRoving);
   }
 
   /**
@@ -130,9 +137,12 @@ const Nav = () => {
   function handleResultsRoving(e) {
     const focusElement = document.activeElement;
 
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
       e.preventDefault();
-      if (focusElement.nodeName === 'INPUT' && focusElement.nextSibling.children[0].nodeName !== 'P') {
+      if (
+        focusElement.nodeName === "INPUT" &&
+        focusElement.nextSibling.children[0].nodeName !== "P"
+      ) {
         focusElement.nextSibling.children[0].firstChild.firstChild.focus();
       } else if (focusElement.parentElement.nextSibling) {
         focusElement.parentElement.nextSibling.firstChild.focus();
@@ -141,9 +151,12 @@ const Nav = () => {
       }
     }
 
-    if (e.key === 'ArrowUp') {
+    if (e.key === "ArrowUp") {
       e.preventDefault();
-      if (focusElement.nodeName === 'A' && focusElement.parentElement.previousSibling) {
+      if (
+        focusElement.nodeName === "A" &&
+        focusElement.parentElement.previousSibling
+      ) {
         focusElement.parentElement.previousSibling.firstChild.focus();
       } else {
         focusElement.parentElement.parentElement.lastChild.firstChild.focus();
@@ -166,10 +179,10 @@ const Nav = () => {
   }, []);
 
   useEffect(() => {
-    document.addEventListener('keydown', escFunction, false);
+    document.addEventListener("keydown", escFunction, false);
 
     return () => {
-      document.removeEventListener('keydown', escFunction, false);
+      document.removeEventListener("keydown", escFunction, false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -182,7 +195,13 @@ const Nav = () => {
         </p>
         <ul className={styles.navMenu}>
           {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
+            return (
+              <NavListItem
+                key={listItem.id}
+                className={styles.navSubMenu}
+                item={listItem}
+              />
+            );
           })}
         </ul>
         <div className={styles.navSearch}>
@@ -193,11 +212,15 @@ const Nav = () => {
             </button>
           )}
           {searchVisibility === SEARCH_VISIBLE && (
-            <form ref={formRef} action="/search" data-search-is-active={!!query}>
+            <form
+              ref={formRef}
+              action="/search"
+              data-search-is-active={!!query}
+            >
               <input
                 type="search"
                 name="q"
-                value={query || ''}
+                value={query || ""}
                 onChange={handleOnSearch}
                 autoComplete="off"
                 placeholder="Search..."
