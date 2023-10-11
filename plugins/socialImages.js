@@ -1,17 +1,20 @@
-const fs = require('fs').promises;
-const path = require('path');
-const { chromium } = require('playwright');
+const fs = require("fs").promises;
+const { chromium } = require("playwright");
 
-const { getAllPosts, mkdirp } = require('./util');
-const WebpackPluginCompiler = require('./plugin-compiler');
+const {
+  getAllPosts,
+  mkdirp,
+  updateWatchOptionsIgnoredPaths,
+} = require("./util");
+const WebpackPluginCompiler = require("./plugin-compiler");
 
-const pkg = require('../package.json');
+const pkg = require("../package.json");
 
 module.exports = function socialImages(nextConfig = {}) {
   const {
     env,
     outputDirectory = `./public${nextConfig.env.OG_IMAGE_DIRECTORY}`,
-    outputName = '[slug].png',
+    outputName = "[slug].png",
     verbose = false,
   } = nextConfig;
 
@@ -19,15 +22,19 @@ module.exports = function socialImages(nextConfig = {}) {
   const height = 506;
 
   const plugin = {
-    name: 'SocialImages',
+    name: "SocialImages",
     outputDirectory,
     outputName,
     getData: getAllPosts,
     generate: async ({ posts = [] }) => {
       mkdirp(outputDirectory);
 
-      const homepage = pkg.homepage && pkg.homepage.replace(/http(s)?:\/\//, '');
-      const template = await fs.readFile('./plugins/socialImages.template.html', 'utf8');
+      const homepage =
+        pkg.homepage && pkg.homepage.replace(/http(s)?:\/\//, "");
+      const template = await fs.readFile(
+        "./plugins/socialImages.template.html",
+        "utf8"
+      );
 
       const browser = await chromium.launch();
 
@@ -36,8 +43,8 @@ module.exports = function socialImages(nextConfig = {}) {
           const { title, slug } = post;
           let html = template;
 
-          html = html.replace('{{ title }}', title);
-          html = html.replace('{{ homepage }}', homepage);
+          html = html.replace("{{ title }}", title);
+          html = html.replace("{{ homepage }}", homepage);
 
           const page = await browser.newPage();
           await page.setViewportSize({ width, height });
@@ -57,9 +64,7 @@ module.exports = function socialImages(nextConfig = {}) {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-      if (config.watchOptions) {
-        config.watchOptions.ignored.push(path.join('**', plugin.outputDirectory, plugin.outputName));
-      }
+      if (config.watchOptions) updateWatchOptionsIgnoredPaths(config, plugin);
 
       config.plugins.push(
         new WebpackPluginCompiler({
@@ -69,7 +74,7 @@ module.exports = function socialImages(nextConfig = {}) {
         })
       );
 
-      if (typeof nextConfig.webpack === 'function') {
+      if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
 

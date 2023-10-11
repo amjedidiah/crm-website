@@ -1,33 +1,20 @@
-# Description
+# PR Details
 
-<!-- Include a summary of the change made and also list the dependencies that are required if any -->
+## Key Changes
 
-## Issue Ticket Number
+<!-- List the changes to look for in this PR and also list the dependencies that are required if any -->
 
-<!-- Specifiy which issue this fixes by referencing the issue number (`#11`) or issue URL. -->
-<!-- Example: Fixes https://github.com/colbyfayock/next-wordpress-starter/issues/1 -->
+## Reviewer Context
 
-Fixes 
+- Related Github issue 🔗
+- GTmetrix results screenshots 📉
 
-## Type of change
+## Check List
 
-<!-- Please select all options that are applicable. -->
-
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Fix or improve the documentation
-- [ ] This change requires a documentation update
-
-
-# Checklist
-
-<!-- These must all be followed and checked. -->
-
-- [ ] I have followed the contributing guidelines of this project as mentioned in [CONTRIBUTING.md](/CONTRIBUTING.md)
-- [ ] I have created an [issue](https://github.com/colbyfayock/next-wordpress-starter/issues) ticket for this PR
-- [ ] I have checked to ensure there aren't other open [Pull Requests](https://github.com/colbyfayock/next-wordpress-starter/pulls) for the same update/change?
-- [ ] I have performed a self-review of my own code
-- [ ] I have run tests locally to ensure they all pass
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes needed to the documentation
+- [ ] Checked to ensure there aren't other open [Pull Requests](https://github.com/amjedidiah/crm-website/pulls) for the same update/change? :eyes:
+- [ ] Commented on the code that is hard to understand :bulb:
+- [ ] Removed all unnecessary logs and comments :fire:
+- [ ] Self reviewed :eyes:
+- [ ] Linked Github issue to this PR :link:
+- [ ] Verified passing GTmetrix score :white_check_mark:
+- [ ] Made corresponding changes needed to the documentation :memo:

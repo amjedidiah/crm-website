@@ -1,7 +1,7 @@
-const indexSearch = require('./plugins/search-index');
-const feed = require('./plugins/feed');
-const sitemap = require('./plugins/sitemap');
-// const socialImages = require('./plugins/socialImages'); TODO: failing to run on Netlify
+const indexSearch = require("./plugins/search-index");
+const feed = require("./plugins/feed");
+const sitemap = require("./plugins/sitemap");
+const socialImages = require("./plugins/socialImages");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -23,20 +23,24 @@ const nextConfig = {
     // with `public` prepended. By default, images will be saved at /public/images/og
     // and available at /images/og. If changing, make sure to update the .gitignore
 
-    OG_IMAGE_DIRECTORY: '/images/og',
+    OG_IMAGE_DIRECTORY: "/images/og",
 
     // By default, only render this number of post pages ahead of time, otherwise
     // the rest will be rendered on-demand
-    POSTS_PRERENDER_COUNT: 5,
+    // POSTS_PRERENDER_COUNT: 5,
 
     WORDPRESS_GRAPHQL_ENDPOINT: process.env.WORDPRESS_GRAPHQL_ENDPOINT,
-    WORDPRESS_MENU_LOCATION_NAVIGATION: process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || 'PRIMARY',
-    WORDPRESS_PLUGIN_SEO: parseEnvValue(process.env.WORDPRESS_PLUGIN_SEO, false),
+    WORDPRESS_MENU_LOCATION_NAVIGATION:
+      process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || "PRIMARY",
+    WORDPRESS_PLUGIN_SEO: parseEnvValue(
+      process.env.WORDPRESS_PLUGIN_SEO,
+      false
+    ),
   },
 };
 
 module.exports = () => {
-  const plugins = [indexSearch, feed, sitemap];
+  const plugins = [indexSearch, feed, sitemap, socialImages];
   return plugins.reduce((acc, plugin) => plugin(acc), nextConfig);
 };
 
@@ -46,8 +50,8 @@ module.exports = () => {
  */
 
 function parseEnvValue(value, defaultValue) {
-  if (typeof value === 'undefined') return defaultValue;
-  if (value === true || value === 'true') return true;
-  if (value === false || value === 'false') return false;
+  if (typeof value === "undefined") return defaultValue;
+  if (value === true || value === "true") return true;
+  if (value === false || value === "false") return false;
   return value;
 }

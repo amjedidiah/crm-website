@@ -1,15 +1,18 @@
-const path = require('path');
-const { getAllPosts, generateIndexSearch } = require('./util');
+const {
+  getAllPosts,
+  generateIndexSearch,
+  updateWatchOptionsIgnoredPaths,
+} = require("./util");
 
-const WebpackPluginCompiler = require('./plugin-compiler');
+const WebpackPluginCompiler = require("./plugin-compiler");
 
 module.exports = function indexSearch(nextConfig = {}) {
   const { env, outputDirectory, outputName, verbose = false } = nextConfig;
 
   const plugin = {
-    name: 'SearchIndex',
-    outputDirectory: outputDirectory || './public',
-    outputName: outputName || 'wp-search.json',
+    name: "SearchIndex",
+    outputDirectory: outputDirectory || "./public",
+    outputName: outputName || "wp-search.json",
     getData: getAllPosts,
     generate: generateIndexSearch,
   };
@@ -18,9 +21,7 @@ module.exports = function indexSearch(nextConfig = {}) {
 
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-      if (config.watchOptions) {
-        config.watchOptions.ignored.push(path.join('**', plugin.outputDirectory, plugin.outputName));
-      }
+      if (config.watchOptions) updateWatchOptionsIgnoredPaths(config, plugin);
 
       config.plugins.push(
         new WebpackPluginCompiler({
@@ -30,7 +31,7 @@ module.exports = function indexSearch(nextConfig = {}) {
         })
       );
 
-      if (typeof nextConfig.webpack === 'function') {
+      if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
 
