@@ -111,13 +111,13 @@ export async function getAllUsers() {
 
       return {
         ...data,
-        title: seo.title,
-        description: seo.metaDesc,
+        title: seo?.title,
+        description: seo?.metaDesc,
         robots: {
-          nofollow: seo.metaRobotsNofollow,
-          noindex: seo.metaRobotsNoindex,
+          nofollow: seo?.metaRobotsNofollow,
+          noindex: seo?.metaRobotsNoindex,
         },
-        social: seo.social,
+        social: seo?.social,
       };
     });
   }
@@ -154,7 +154,7 @@ export async function getAllAuthors() {
 export function mapUserData(user) {
   return {
     ...user,
-    roles: [...user.roles.nodes],
+    roles: user.roles ? [...user.roles.nodes] : [],
     avatar: user.avatar && updateUserAvatar(user.avatar),
   };
 }

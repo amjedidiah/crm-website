@@ -7,6 +7,7 @@ import ClassName from "models/classname";
 
 import { FaMapPin } from "react-icons/fa";
 import styles from "./Metadata.module.scss";
+import NextImage from "next/image";
 
 const DEFAULT_METADATA_OPTIONS = {
   compactCategories: true,
@@ -32,7 +33,7 @@ const Metadata = ({
         <li className={styles.metadataAuthor}>
           <address>
             {author.avatar && (
-              <img
+              <NextImage
                 width={author.avatar.width}
                 height={author.avatar.height}
                 src={author.avatar.url}
