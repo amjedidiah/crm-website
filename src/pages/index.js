@@ -12,8 +12,9 @@ import Pagination from "components/Pagination";
 import styles from "styles/pages/Home.module.scss";
 
 export default function Home({ posts, pagination }) {
-  const { metadata = {} } = useSite();
-  const { title, description } = metadata;
+  const {
+    metadata: { title, description },
+  } = useSite();
 
   return (
     <Layout>
@@ -36,6 +37,7 @@ export default function Home({ posts, pagination }) {
       <Section>
         <Container>
           <h2 className="sr-only">Posts</h2>
+          <h4 className="text-red-500">Hello</h4>
           <ul className={styles.posts}>
             {posts.map((post) => {
               return (

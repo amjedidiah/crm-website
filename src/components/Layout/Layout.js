@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { Helmet } from "react-helmet";
-import styles from "./Layout.module.scss";
 
 import useSite from "hooks/use-site";
 import { helmetSettingsFromMetadata } from "lib/site";
@@ -8,17 +7,13 @@ import { helmetSettingsFromMetadata } from "lib/site";
 import Nav from "components/Nav";
 import Main from "components/Main";
 import Footer from "components/Footer";
+import { Fragment } from "react";
 
 const Layout = ({ children }) => {
-  const router = useRouter();
-  const { asPath } = router;
-
+  const { asPath } = useRouter();
   const { homepage, metadata = {} } = useSite();
 
-  if (!metadata.og) {
-    metadata.og = {};
-  }
-
+  if (!metadata.og) metadata.og = {};
   metadata.og.url = `${homepage}${asPath}`;
 
   const helmetSettings = {
@@ -64,15 +59,14 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={styles.layoutContainer}>
+    <Fragment>
       <Helmet {...helmetSettings} />
-
       <Nav />
 
       <Main>{children}</Main>
 
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 

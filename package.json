@@ -15,6 +15,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.14",
     "@vercel/analytics": "^1.0.1",
+    "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "dotenv": "^16.0.3",
     "escape-string-regexp-node": "^1.0.2",
@@ -32,8 +33,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.8.0",
     "rss": "^1.2.2",
-    "sass": "^1.62.1",
-    "style.css": "^1.0.3"
+    "sass": "^1.62.1"
   },
   "engines": {
     "node": ">=16.20.2",

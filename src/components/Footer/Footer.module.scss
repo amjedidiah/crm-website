@@ -1,8 +1,8 @@
-@import "styles/settings/__settings";
+
 
 .footer {
   width: 100%;
-  border-top: 1px solid $color-gray-100;
+  border-top: 1px solid #cfd7de;
 }
 
 .footerMenu {
@@ -32,7 +32,7 @@
 
 .footerMenuTitle {
   display: inline-block;
-  color: $color-gray-800;
+  color: #1e242b;
   text-decoration: none;
   margin-bottom: 1.4em;
   margin-top: 0;
@@ -50,14 +50,14 @@
   a {
     display: block;
     overflow: hidden;
-    color: $color-gray-600;
+    color: #475768;
     text-decoration: none;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     @media (hover: hover) {
       &:hover {
-        color: $color-primary;
+        color: #0070f3;
         text-decoration: underline;
       }
     }
@@ -65,8 +65,8 @@
 }
 
 .footerLegal {
-  color: $color-gray-400;
-  background-color: $color-gray-900;
+  color: #7589a0;
+  background-color: #090b0d;
   padding: 0.8rem 0;
   margin: 0;
 

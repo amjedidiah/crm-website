@@ -1,14 +1,22 @@
-// import ClassName from 'models/classname';
-// import styles from './NavListItem.module.scss';
 import Link from "next/link";
 
-const NavListItem = ({ className, item }) => {
-  const nestedItems = (item.children || []).map((item) => {
-    return <NavListItem key={item.id} item={item} />;
-  });
+export type ListItem = {
+  id: string;
+  path?: string;
+  children: ListItem[];
+  target?: string;
+  title: string;
+  label: string;
+};
 
+export type Props = {
+  className?: string;
+  item: ListItem;
+};
+
+const NavListItem = ({ className, item }: Props) => {
   return (
-    <li key={item.id}>
+    <li key={item.id} className={className}>
       {/* 
         Before rendering the Link component, we first check if `item.path` exists
         and if it does not include 'http'. This prevents a TypeError when `item.path` is null.
@@ -27,8 +35,6 @@ const NavListItem = ({ className, item }) => {
           {item.label}
         </a>
       )}
-
-      {nestedItems.length > 0 && <ul className={className}>{nestedItems}</ul>}
     </li>
   );
 };

@@ -1,4 +1,4 @@
-@import "styles/settings/__settings";
+
 
 .postCard {
   position: relative;
@@ -14,7 +14,7 @@
 
     &:hover {
       h3 {
-        color: $color-primary;
+        color: #0070f3;
         text-decoration: underline;
       }
     }
@@ -22,7 +22,7 @@
 }
 
 .postCardSticky {
-  border: solid 0.02em $color-gray-100;
+  border: solid 0.02em #cfd7de;
   border-radius: 1em;
 
   svg {
@@ -30,7 +30,7 @@
     top: 1.2em;
     right: 1em;
     font-size: 1.15em;
-    color: $color-gray-300;
+    color: #93a3b5;
   }
 }
 

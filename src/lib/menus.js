@@ -24,7 +24,7 @@ export async function getAllMenus() {
     }),
   });
 
-  menus.push(defaultNavigation);
+  menus?.push(defaultNavigation);
 
   return {
     menus,

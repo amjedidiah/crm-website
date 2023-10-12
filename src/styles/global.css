@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    transition: all 0.15 ease-in-out;
+  }
+
+  html,
+  body, #__next {
+    height: 100%;
+    @apply bg-white-default;
+  }
+
+  #__next > main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100%;
+
+    @apply bg-white-default;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-visby;
+  }
+
+  .sr-only {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 0;
+    height: 0;
+  }
+}
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .scrollbar::-webkit-scrollbar {
+      display: unset;
+    }
+
+    .scrollbar {
+      -ms-overflow-style: unset; /* IE and Edge */
+      scrollbar-width: unset; /* Firefox */
+    }
+}

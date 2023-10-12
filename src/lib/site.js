@@ -40,7 +40,7 @@ export async function getSiteMetadata() {
   // is a code, we need to grab the 2char version of it to use ofr
   // the HTML lang attribute
 
-  if (!language || language === "") {
+  if (!language) {
     settings.language = "en";
   } else {
     settings.language = language.split("_")[0];
@@ -85,7 +85,7 @@ export async function getSiteMetadata() {
       });
     }
 
-    if (social.twitter) {
+    if (social?.twitter) {
       settings.twitter = {
         username: social.twitter.username,
         cardType: social.twitter.cardType,
