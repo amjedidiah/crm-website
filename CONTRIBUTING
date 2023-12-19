@@ -18,7 +18,6 @@ git checkout -b <branch-name>
 Refer to the [naming conventions](#naming-conventions) for guide on how to name branches
 
 - After making changes, add the changes with `git add`, `git commit` (write a good commit message, refer to [commit convention](#commit-conventions) for guide)
-**_Never commit lock files: `yarn.lock`, `package-lock.json`, or `pnpm-lock.yaml` files_**
 
 - Push your changes to your forked repository:
 
