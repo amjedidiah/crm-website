@@ -49,4 +49,4 @@ public/sitemap.xml
 public/robots.txt
 public/images/og
 
-pnpm-lock.yaml
+yarn.lock
