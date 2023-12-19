@@ -9,8 +9,7 @@
     "build": "nx exec -- next build",
     "start": "nx exec -- next start",
     "lint:dev": "next lint --fix",
-    "lint": "next lint",
-    "export": "next export"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
