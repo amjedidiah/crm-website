@@ -29,7 +29,7 @@ export default function Home({ posts, pagination }) {
         <p
           className={styles.description}
           dangerouslySetInnerHTML={{
-            __html: description,
+            __html: description + "I'm some default description",
           }}
         />
       </Header>
