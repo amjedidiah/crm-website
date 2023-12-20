@@ -5,10 +5,12 @@ const socialImages = require("./plugins/socialImages");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   swcMinify: true,
   images: {
     domains: ["secure.gravatar.com"],
+    unoptimized: true,
   },
 
   // By default, Next.js removes the trailing slash. One reason this would be good
