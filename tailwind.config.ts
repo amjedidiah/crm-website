@@ -13,10 +13,16 @@ const config: Config = {
       },
       colors: {
         blue: {
-          default: "#190773",
+          default: "#1e2e84",
         },
         white: {
-          default: "#fdfcfb",
+          default: "#fffcfa",
+        },
+        orange: {
+          default: "#ff9828",
+        },
+        pink: {
+          default: "#c23365",
         },
       },
     },

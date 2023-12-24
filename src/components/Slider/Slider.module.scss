@@ -1,0 +1,23 @@
+
+
+.slider {
+  animation: slide 20s infinite linear;
+  width: calc((280px * 8) + 60px);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.card {
+  width: 280px;
+}
