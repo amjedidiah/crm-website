@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { postPathBySlug, sanitizeExcerpt } from "lib/posts";
 
@@ -48,7 +50,6 @@ const PostCard = ({ post, options = {} }: PostCardProps) => {
           <h2 className="text-[27px] font-bold tracking-tighter text-orange-800">
             {title}
           </h2>
-
           <div className="w-[70px] h-[1px] bg-orange-default"></div>
           <Metadata
             date={metadata.date}
@@ -70,24 +71,6 @@ const PostCard = ({ post, options = {} }: PostCardProps) => {
           <Button className="h-[30px] w-[150px]" text="Read More" />
         </Link>
       </Container>
-      {/* {isSticky && <FaMapPin aria-label="Sticky Post" />}
-      <Link href={postPathBySlug(slug)}>
-        <h3
-          className={styles.postCardTitle}
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-      </Link>
-      <Metadata className={styles.postCardMetadata} {...metadata} />
-      {excerpt && (
-        <div
-          className={styles.postCardContent}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeExcerpt(excerpt),
-          }}
-        />
-      )} */}
     </div>
   );
 };
