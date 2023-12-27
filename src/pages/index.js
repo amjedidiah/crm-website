@@ -76,7 +76,7 @@ export default function Home({ posts, pagination }) {
         >
           <SectionTitle className="mb5 text-slate-50">WELCOME TO</SectionTitle>
 
-          <p className="md:mb-[30px] text-transparent bg-clip-text bg-gradient-to-r from-pink-default to-orange-default text-3xl md:text-5xl font-semibold md:font-medium text-center font-poppins leading-12 md:leading-none">
+          <p className="md:mb-[30px] text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-default text-3xl md:text-5xl font-semibold md:font-medium text-center font-poppins leading-12 md:leading-none">
             {title}
           </p>
 
@@ -136,7 +136,7 @@ export default function Home({ posts, pagination }) {
 
       <Section
         aria-label="Upcoming events slider section"
-        className="my-0 bg-gradient-to-b from-pink-default to-orange-default h-[700px] flex flex-col items-center"
+        className="my-0 bg-gradient-to-b from-blue-default to-red-600 h-[700px] flex flex-col items-center"
       >
         <SectionTitle className="font-bold text-[20px] md:text-[30px] text-center text-slate-50">
           UPCOMING EVENTS

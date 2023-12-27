@@ -21,9 +21,6 @@ const config: Config = {
         orange: {
           default: "#ff9828",
         },
-        pink: {
-          default: "#c23365",
-        },
       },
     },
   },

@@ -47,7 +47,7 @@ const PostCard = ({ post, options = {} }: PostCardProps) => {
 
       <Container className="w-full md:w-[50%] h-full md:h-full flex flex-col justify-start md:justify-end items-start gap-[20px] py-[20px]">
         <Container fluid className="w-full">
-          <h2 className="text-[27px] font-bold tracking-tighter text-orange-800">
+          <h2 className="text-[27px] font-bold tracking-tighter text-red-600">
             {title}
           </h2>
           <div className="w-[70px] h-[1px] bg-orange-default"></div>

@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Button({ text, className, children }: Props) {
-  const gradient = "bg-gradient-to-b from-fuchsia-700 to-orange-default";
+  const gradient = "bg-blue-default";
   const flexBox = "flex justify-center items-center gap-[10px]";
   return (
     <button
