@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import SliderCard from "./Card";
 import Container from "../Container";
-import styles from "./Slider.module.scss";
 
 const sliderData = [
   {
@@ -36,13 +34,16 @@ const sliderData = [
   },
 ];
 
-export default function Slider() {
+export default function EventsSlider() {
   return (
     <Container
       fluid
       className="min-w-[300px] max-w-[300px] md:min-w-[800px] md:max-w-[800px] lg:min-w-[1150px] lg:max-w-[1150px] h-[450px] overflow-x-hidden flex items-end justify-center relative"
     >
-      <Container fluid className={`flex h-fit gap-[10px] ${styles.slider}`}>
+      <Container
+        fluid
+        className={`flex h-fit gap-[10px] animate-sliding-events absolute left-0 bottom-0 w-[calc((280px * 8) + 60px)]`}
+      >
         <>
           {sliderData?.map(({ day, month, title, desc, detailsURL }, index) => {
             return (

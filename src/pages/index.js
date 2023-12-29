@@ -12,8 +12,9 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
-import { MdOutlineScreenshotMonitor } from "react-icons/md";
-import Slider from "@/components/Slider";
+// import { MdOutlineScreenshotMonitor } from "react-icons/md";
+import HeroSlider from "@/components/LandingPage/HeroSlider";
+import EventsSlider from "@/components/LandingPage/EventsSlider";
 
 // import styles from "styles/pages/Home.module.scss";
 
@@ -25,47 +26,7 @@ export default function Home({ posts, pagination }) {
   return (
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
-      <Header>
-        <Container
-          fluid
-          className="mt-25 selection:text-5xl min-h-screen min-w-screen relative flex justify-center items-end"
-        >
-          <Image
-            src={
-              "https://images.unsplash.com/photo-1600038734220-7e3c079bf982?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-            alt="bible with its pages flipping"
-            width={1024}
-            height={500}
-            className="object-cover w-full h-full absolute"
-          />
-
-          <div className="h-full w-full bg-gradient-to-t from-black to-transparent absolute"></div>
-
-          <Container
-            className="mb-14 md:mb-28 flex flex-col items-center gap-10 md:gap-0 z-[1]"
-            fluid
-          >
-            <SectionTitle className="mb5 text-slate-50">
-              LATEST SERMON
-            </SectionTitle>
-            <p className="md:mb-20 text-slate-50 text-4xl font-semibold md:font-medium text-center font-poppins">
-              {description.length > 0
-                ? description
-                : "The Supernatural Principal of Change"}
-            </p>
-            <a
-              href="https://www.youtube.com/c/CRMtv/videos?app=desktop&view=0&sort=dd&shelf_id=1"
-              className="h-fit w-fit"
-            >
-              <Button text="WATCH SERMON" className="w-56 h-14">
-                <MdOutlineScreenshotMonitor size="20px" />
-              </Button>
-            </a>
-          </Container>
-        </Container>
-      </Header>
-
+      <HeroSlider />
       <Section
         className="bg-black my-0 h-[400px]"
         aria-label="church mission section"
@@ -142,7 +103,7 @@ export default function Home({ posts, pagination }) {
           UPCOMING EVENTS
         </SectionTitle>
 
-        <Slider />
+        <EventsSlider />
 
         <Link href="/">
           <Button text="VIEW ALL EVENTS" className="h-14 w-[200px] mt-[60px]" />

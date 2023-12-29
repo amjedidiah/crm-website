@@ -46,7 +46,7 @@ const PostCard = ({ post, options = {} }: PostCardProps) => {
       />
 
       <Container className="w-full md:w-[50%] h-full md:h-full flex flex-col justify-start md:justify-end items-start gap-[20px] py-[20px]">
-        <Container fluid className="w-full">
+        <Container fluid className="w-full min-h-[70px] relative overflow-clip">
           <h2 className="text-[27px] font-bold tracking-tighter text-red-600">
             {title}
           </h2>

@@ -1,6 +1,5 @@
 import Container from "../Container";
 import Link from "next/link";
-import styles from "./Slider.module.scss";
 
 type Props = {
   day: String;
@@ -20,7 +19,7 @@ export default function SliderCard({
   return (
     <Container
       fluid
-      className={`w-[280px] h-[350px] flex flex-col p-[10px] items-center justify-center gap-[20px] relative bg-slate-100 ${styles.card}`}
+      className={`w-[280px] h-[350px] flex flex-col p-[10px] items-center justify-center gap-[20px] relative bg-slate-100`}
     >
       <div className="rounded-[50%] h-[80px] w-[80px] bg-black text-slate-100 text-wrap absolute top-[-30px] left-[30px] flex flex-col justify-center items-center shadow-lg shadow-stone-800">
         <span className="text-[20px] font-bold">{day}</span>

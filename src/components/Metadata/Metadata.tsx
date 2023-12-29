@@ -27,7 +27,7 @@ PostMetaData) => {
   // const { compactCategories } = options;
 
   return (
-    <ul className="flex flex-col md:flex-row gap-[10px] justify-between text-sm mt-[5px]">
+    <ul className="flex flex-col md:flex-row gap-[10px] justify-between text-sm mt-[5px] mr-[10px]">
       {author && (
         <li>
           <address className="flex gap-[5px]">
