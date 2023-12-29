@@ -7,7 +7,7 @@ type Props = PropsWithChildren<{
 
 export default function Section({ children, className, ...rest }: Props) {
   return (
-    <section className={`py-8 my-12 ${className}`} {...rest}>
+    <section className={`py-8 ${className}`} {...rest}>
       {children}
     </section>
   );

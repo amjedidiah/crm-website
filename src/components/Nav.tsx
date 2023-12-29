@@ -32,7 +32,7 @@ const Nav = () => {
   );
 
   return (
-    <header className="fixed w-full bg-blue-default z-[1]">
+    <header className="fixed w-full bg-blue-default z-[2]">
       <Container className="lg:container" fluid>
         <nav className="w-full flex flex-col lg:flex-row items-center justify-between pt-3 px-3 lg:p-3 gap-1">
           <Link href="/">

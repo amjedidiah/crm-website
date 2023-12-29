@@ -1,19 +1,31 @@
 import NextImage from "next/image";
 import ClassName from "models/classname";
-
+import React from "react";
 import styles from "./Image.module.scss";
+
+type ImageProps = {
+  children?: React.ReactNode;
+  className: string;
+  width?: number;
+  height?: number;
+  src: string;
+  alt: string;
+  // srcSet?: string;
+  sizes?: string | undefined;
+  dangerouslySetInnerHTML?: string | TrustedHTML;
+};
 
 const Image = ({
   children,
   className,
-  width = "100%",
-  height = "auto",
+  width,
+  height,
   src,
   alt,
-  srcSet,
+  // srcSet,
   sizes,
   dangerouslySetInnerHTML,
-}) => {
+}: ImageProps) => {
   const imageClassName = new ClassName(styles.image);
 
   imageClassName.addIf(className, className);
@@ -26,7 +38,7 @@ const Image = ({
           height={height}
           src={src}
           alt={alt || ""}
-          srcSet={srcSet}
+          // srcSet={srcSet}
           sizes={sizes}
         />
       </div>

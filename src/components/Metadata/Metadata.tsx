@@ -1,13 +1,12 @@
 import Link from "next/link";
 
-import { categoryPathBySlug } from "lib/categories";
+// import { categoryPathBySlug } from "lib/categories";
 import { authorPathByName } from "lib/users";
 import { formatDate } from "lib/datetime";
 import ClassName from "models/classname";
-
-import { FaMapPin } from "react-icons/fa";
 import styles from "./Metadata.module.scss";
 import NextImage from "next/image";
+import { PostMetaData } from "@/lib/definitions";
 
 const DEFAULT_METADATA_OPTIONS = {
   compactCategories: true,
@@ -18,26 +17,27 @@ const Metadata = ({
   author,
   date,
   categories,
-  options = DEFAULT_METADATA_OPTIONS,
-  isSticky = false,
-}) => {
+}: //options = DEFAULT_METADATA_OPTIONS,
+//isSticky = false,
+PostMetaData) => {
   const metadataClassName = new ClassName(styles.metadata);
 
   metadataClassName.addIf(className, className);
 
-  const { compactCategories } = options;
+  // const { compactCategories } = options;
 
   return (
-    <ul className={metadataClassName.toString()}>
+    <ul className="flex flex-col md:flex-row gap-[10px] justify-between text-sm mt-[5px] mr-[10px]">
       {author && (
-        <li className={styles.metadataAuthor}>
-          <address>
+        <li>
+          <address className="flex gap-[5px]">
             {author.avatar && (
               <NextImage
-                width={author.avatar.width}
-                height={author.avatar.height}
+                width={25}
+                height={25}
                 src={author.avatar.url}
                 alt="Author Avatar"
+                className="rounded-[50%]"
               />
             )}
             By{" "}
@@ -49,12 +49,10 @@ const Metadata = ({
       )}
       {date && (
         <li>
-          <time pubdate="pubdate" dateTime={date}>
-            {formatDate(date)}
-          </time>
+          <time dateTime={date}>{formatDate(date)}</time>
         </li>
       )}
-      {Array.isArray(categories) && categories[0] && (
+      {/* {Array.isArray(categories) && categories[0] && (
         <li className={styles.metadataCategories}>
           {compactCategories && (
             <p title={categories.map(({ name }) => name).join(", ")}>
@@ -78,12 +76,12 @@ const Metadata = ({
             </ul>
           )}
         </li>
-      )}
-      {isSticky && (
+      )} */}
+      {/* {isSticky && (
         <li className={styles.metadataSticky}>
           <FaMapPin aria-label="Sticky Post" />
         </li>
-      )}
+      )} */}
     </ul>
   );
 };

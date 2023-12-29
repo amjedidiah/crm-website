@@ -11,13 +11,28 @@ const config: Config = {
         visby: ["var(--font-visby)"],
         poppins: ["var(--font-poppins)"],
       },
+
       colors: {
         blue: {
-          default: "#190773",
+          default: "#1e2e84",
         },
         white: {
-          default: "#fdfcfb",
+          default: "#fffcfa",
         },
+        orange: {
+          default: "#ff9828",
+        },
+      },
+
+      keyframes: {
+        eventsSlider: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+
+      animation: {
+        "sliding-events": "eventsSlider 20s linear infinite",
       },
     },
   },
